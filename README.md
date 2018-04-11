@@ -3,7 +3,7 @@
 [drone]: https://drone.spritsail.io/spritsail/webhook
 [mbdg]: https://microbadger.com/images/spritsail/webhook
 
-# [spritsail/webhook][hub] - A tiny image, nurtured from source
+# [spritsail/webhook][hub]
 [![](https://images.microbadger.com/badges/image/spritsail/webhook.svg)][mbdg]
 [![Latest Version](https://images.microbadger.com/badges/version/spritsail/webhook.svg)][hub]
 [![Git Commit](https://images.microbadger.com/badges/commit/spritsail/webhook.svg)][git]
@@ -13,3 +13,8 @@
 
 This Docker image is for Webhook - a program to run bash scripts from an API endpoint.
 
+## Example run command:
+
+```bash
+docker run -d -v /path/to/hooks.json:/hooks.json -p 9000:9000 spritsail/webhook -hooks /hooks.json -verbose
+```
