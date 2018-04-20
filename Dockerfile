@@ -11,14 +11,15 @@ ENV SRCPATH ${GOPATH}/src/github.com/adnanh/webhook
 WORKDIR ${SRCPATH}
 
 RUN apk add -U curl go git libc-dev gcc libgcc \
- && curl -L https://github.com/adnanh/webhook/archive/${WEBHOOK_VER}.tar.gz | tar xz --strip-components=1 \
+ && curl -L https://github.com/adnanh/webhook/archive/${WEBHOOK_VER}.tar.gz \
+        | tar xz --strip-components=1 \
  && go get -d \
  && go build -o /webhook \
  && chmod +x /webhook
 
 # =============
 
-FROM alpine:3.7
+FROM spritsail/alpine:3.7
 
 ARG WEBHOOK_VER
 
@@ -38,5 +39,5 @@ RUN apk add -U --no-cache bash
 
 EXPOSE 9000
 
-ENTRYPOINT ["/usr/bin/webhook"]
+CMD ["/usr/bin/webhook"]
 
