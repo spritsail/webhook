@@ -39,5 +39,5 @@ RUN apk add -U --no-cache bash
 
 EXPOSE 9000
 
-CMD ["/usr/bin/webhook"]
+ENTRYPOINT ["/sbin/tini", "--", "/usr/bin/webhook"]
 
