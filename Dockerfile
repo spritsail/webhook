@@ -19,7 +19,7 @@ RUN apk add -U curl go git libc-dev gcc libgcc \
 
 # =============
 
-FROM spritsail/alpine:3.7
+FROM spritsail/alpine:3.8
 
 ARG WEBHOOK_VER
 
