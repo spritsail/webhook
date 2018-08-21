@@ -1,7 +1,7 @@
 # Pre-define ARGs to ensure correct scope
 ARG WEBHOOK_VER=2.6.8
 
-FROM alpine:3.7 as builder
+FROM alpine:3.8 as builder
 
 ARG WEBHOOK_VER
 
