@@ -1,7 +1,7 @@
 # Pre-define ARGs to ensure correct scope
 ARG WEBHOOK_VER=2.6.8
 
-FROM alpine:3.8 as builder
+FROM alpine:3.9 as builder
 
 ARG WEBHOOK_VER
 
@@ -19,7 +19,7 @@ RUN apk add -U curl go git libc-dev gcc libgcc \
 
 # =============
 
-FROM spritsail/alpine:3.8
+FROM spritsail/alpine:3.9
 
 ARG WEBHOOK_VER
 
