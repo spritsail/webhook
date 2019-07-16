@@ -5,19 +5,12 @@ pipeline:
     repo: webhook-dev
 
   test:
-    image: docker
+    image: spritsail/docker-test
     volumes: [ '/var/run/docker.sock:/var/run/docker.sock' ]
-    commands:
-      - CON_NAME=$(docker run -d --rm webhook-dev -verbose -nopanic)
-      - timeout -t 10 /bin/sh -xc
-            "docker logs --tail=all -f $$CON_NAME 2>&1
-                | tee /dev/stderr
-                | while read line; do
-                    if grep -qm 1 'serving hooks'; then
-                        docker kill $$CON_NAME;
-                        exit 0;
-                    fi;
-                  done" || { docker kill $$CON_NAME; exit 37; }
+    repo: webhook-dev
+    run_cmd: -verbose -nopanic
+    timeout: 10
+    log_pipe: grep -qm 1 'serving hooks'
 
   publish:
     image: spritsail/docker-publish
